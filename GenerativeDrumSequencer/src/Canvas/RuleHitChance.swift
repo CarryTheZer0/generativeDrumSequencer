@@ -21,4 +21,8 @@ class RuleHitChance : CanvasRule {
             super.getSequencer().setHitChance(trackIndex: pair.0, unitIndex: pair.1, chance: Int(newVal))
         }
     }
+    
+    override func getName() -> String {
+        return "Hit Chance:"
+    }
 }

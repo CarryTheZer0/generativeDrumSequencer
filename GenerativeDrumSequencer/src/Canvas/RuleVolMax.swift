@@ -1,5 +1,5 @@
 //
-//  RuleVolMin.swift
+//  RuleVolMax.swift
 //  GenerativeDrumSequencer
 //
 //  Created by Mike Persin on 12/11/2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RuleVolMin : CanvasRule {    
+class RuleVolMax : CanvasRule {
     override init(sequencer: DrumSequencer, parent: CanvasNode, isX: Bool) {
         super.init(sequencer: sequencer, parent: parent, isX: isX)
         super.limits = 0.0...Constants.maxVol
@@ -18,11 +18,11 @@ class RuleVolMin : CanvasRule {
         let newVal = super.map(value: val, from: inRange, to: range!)
         
         for pair in super.getIndices() {
-            super.getSequencer().setVolumeMin(trackIndex: pair.0, unitIndex: pair.1, volume: newVal)
+            super.getSequencer().setVolumeMax(trackIndex: pair.0, unitIndex: pair.1, volume: newVal)
         }
     }
     
     override func getName() -> String {
-        return "Minimum Volume:"
+        return "Maximum Volume:"
     }
 }

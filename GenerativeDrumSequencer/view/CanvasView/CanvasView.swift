@@ -15,10 +15,10 @@ struct CanvasView : View {
     @State private var xLabel: String
     @State private var yLabel: String
     
-    init(sequencer: DrumSequencer, canvas: Canvas) {
+    init() {
         self.textMargin = 15.0
-        self.canvas = canvas
-        self.sequencer = sequencer
+        self.canvas = Canvas.shared
+        self.sequencer = DrumSequencer.shared
         self.xLabel = "X"
         self.yLabel = "Y"
     }
@@ -26,7 +26,8 @@ struct CanvasView : View {
     var body: some View {
         VStack {
             HStack {
-                Text("\(self.yLabel) --->")
+                let yLabel: String = self.canvas.getSelectedNode() != nil ? self.canvas.getSelectedNode()!.getYLabel() : "Y"
+                Text("\(yLabel) --->")
                     .rotationEffect(Angle(degrees: 270.0))
                     .frame(height: self.textMargin)
                 GeometryReader { geometry in
@@ -45,7 +46,8 @@ struct CanvasView : View {
             HStack {
                 Spacer()
                     .frame(width: self.textMargin, height: self.textMargin)
-                Text("\(self.xLabel) --->")
+                let xLabel: String = self.canvas.getSelectedNode() != nil ? self.canvas.getSelectedNode()!.getXLabel() : "X"
+                Text("\(xLabel) --->")
                     .frame(height: self.textMargin)
             }
         }

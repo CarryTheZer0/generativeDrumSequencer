@@ -22,16 +22,21 @@ struct CanvasControlView : View {
             VStack {
                 Button("Add", action: { self.canvas.addNode() } )
                 if (self.canvas.getSelectedNode() != nil) {
+                    Text("Rules:")
                     ScrollView {
                         VStack {
-                            Text("Rules:")
                             ZStack {
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .foregroundColor(Constants.text)
-                                    .frame(width: 10, height: 10)
-                                    .padding(5)
+                                Capsule()
+                                    .fill(Constants.foreground3)
+                                    .frame(width: 100, height: 20)
+                                HStack {
+                                    Image(systemName: "plus")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .foregroundColor(Constants.text)
+                                        .frame(width: 10, height: 10)
+                                    Text("Add Rule")
+                                }
                             }
                             .popover(isPresented: self.$showDropDown, arrowEdge: Edge.leading, content: {
                                 RuleSelectorView(isActive: self.$showDropDown, canvas: self.canvas)
@@ -39,13 +44,15 @@ struct CanvasControlView : View {
                             .gesture(TapGesture()
                                         .onEnded({ self.showDropDown = true })
                             )
-                            .background(Constants.foreground3)
-                            .cornerRadius(3.0)
                             ForEach(self.canvas.getSelectedNode()!.getRules()) { rule in
                                 CanvasRuleView(rule: rule)
                             }
                         }
                     }
+                }
+                else {
+                    Text("No node selected")
+                        .frame(width: 280)
                 }
             }
         }

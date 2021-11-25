@@ -36,13 +36,16 @@ struct ContentView: View {
                             VStack {
                                 TrackControlView(sequencer: self.sequencer)
                                     .padding()
+                                    .frame(width: 300)
                                 MetronomeControlView(sequencer: self.sequencer)
                                     .padding()
+                                    .frame(width: 300)
                             }
                             CanvasControlView(canvas: self.canvas)
                                 .padding()
+                                .frame(width: 300)
                         }
-                        CanvasView(sequencer: self.sequencer, canvas: self.canvas)
+                        CanvasView()
                     }
                     .frame(height: geometry.size.height - trackHeight)
                     ScrollView {

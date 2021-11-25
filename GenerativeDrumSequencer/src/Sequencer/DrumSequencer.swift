@@ -74,6 +74,7 @@ class DrumSequencer : ObservableObject {
         self.selectedTrack = trackIndex
         self.selectedUnit = unitIndex
         self.selectionActive = true
+        Canvas.shared.updateUI()
     }
     
     func stop() {

@@ -46,6 +46,10 @@ class CanvasRule : Identifiable, ObservableObject {
         self.objectWillChange.send()
     }
     
+    func updateUI() {
+        self.objectWillChange.send()
+    }
+    
     func delete() {
         self.parent.deleteRule(id: self.id)
     }
@@ -75,6 +79,10 @@ class CanvasRule : Identifiable, ObservableObject {
     }
     
     func setNewValue(val: Double, in inRange: ClosedRange<Double>) {
+        fatalError("Virtual method. Must be overriden in subclasses.")
+    }
+    
+    func getName() -> String {
         fatalError("Virtual method. Must be overriden in subclasses.")
     }
     

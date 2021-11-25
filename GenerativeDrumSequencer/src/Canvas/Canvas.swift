@@ -23,6 +23,9 @@ class Canvas : ObservableObject {
     
     func updateUI() {
         self.objectWillChange.send()
+        for node in self.nodes {
+            node.updateUI()
+        }
     }
     
     func addNode() {

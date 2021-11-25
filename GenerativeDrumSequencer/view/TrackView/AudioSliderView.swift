@@ -50,7 +50,7 @@ struct AudioSliderView : View {
                 RoundedRectangle(cornerRadius: 3.0)
                     .frame(
                         width: self.isHorizontal ? 15 : 40,
-                        height: self.isHorizontal ? 40 : 15
+                        height: 15
                     )
                     .foregroundColor(self.enabled ? self.knobColor : self.disabledColor)
                     .offset(
