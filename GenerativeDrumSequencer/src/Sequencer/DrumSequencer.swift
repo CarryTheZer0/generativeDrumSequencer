@@ -53,6 +53,7 @@ class DrumSequencer : ObservableObject {
     func toggleUnit() {
         if (self.selectionActive) {
             self.tracks[self.selectedTrack].toggle(index: self.selectedUnit)
+            self.objectWillChange.send()
         }
     }
     
@@ -95,6 +96,13 @@ class DrumSequencer : ObservableObject {
         for track in self.tracks {
             track.setCurrent(c: current, reselect: true)
         }
+    }
+    
+    func getEnabled() -> Bool {
+        if (self.selectionActive) {
+            return self.tracks[self.selectedTrack].getEnabled(index: self.selectedUnit)
+        }
+        else { return false }
     }
     
     func getSelected() -> (Int, Int) {

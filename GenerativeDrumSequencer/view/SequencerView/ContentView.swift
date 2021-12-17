@@ -34,16 +34,17 @@ struct ContentView: View {
                     HStack {
                         HStack {
                             VStack {
-                                TrackControlView(sequencer: self.sequencer)
+                                TrackControlView()
                                     .padding()
                                     .frame(width: 300)
-                                MetronomeControlView(sequencer: self.sequencer)
+                                MetronomeControlView()
                                     .padding()
                                     .frame(width: 300)
                             }
-                            CanvasControlView(canvas: self.canvas)
+                                .frame(height: geometry.size.height - trackHeight)
+                            CanvasControlView()
                                 .padding()
-                                .frame(width: 300)
+                                .frame(width: 300, height: geometry.size.height - trackHeight)
                         }
                         CanvasView()
                     }

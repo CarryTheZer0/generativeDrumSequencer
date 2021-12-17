@@ -55,23 +55,23 @@ class CanvasRule : Identifiable, ObservableObject {
     }
     
     func onTrackRemoved(trackIndex: Int) {
-        var toRemove = [Int]()
+        var toRemove = [(Int, Int)]()
         var toAdd = [(Int, Int)]()
-        for pair in 0..<indices.count {
-            if (indices[pair].0 == trackIndex) {
+        for pair in 0..<self.indices.count {
+            if (self.indices[pair].0 == trackIndex) {
                 // for the removed track, delete the index pairs
-                toRemove.append(pair)
+                toRemove.append(self.indices[pair])
             }
             else if (indices[pair].0 > trackIndex) {
                 // for tracks to be moved down, reduce the pair's track index by one
-                toRemove.append(pair)
-                toAdd.append((indices[pair].0 - 1, indices[pair].1))
+                toRemove.append(self.indices[pair])
+                toAdd.append((self.indices[pair].0 - 1, self.indices[pair].1))
             }
         }
         
         // actual list manipulation done outside of main for loop to avoid indexing errors
-        for i in toRemove {
-            self.indices.remove(at: i)
+        for pair in toRemove {
+            self.indices.removeAll(where: { $0 == pair })
         }
         for pair in toAdd {
             self.indices.append(pair)
@@ -122,7 +122,7 @@ class CanvasRule : Identifiable, ObservableObject {
     
     func map(value: Double, from: ClosedRange<Double>, to: ClosedRange<Double>) -> Double {
         var val: Double = ((value - from.lowerBound) / (from.upperBound - from.lowerBound)) * (to.upperBound - to.lowerBound) + to.lowerBound
-        if (inverted) { val = to.upperBound - val }
+        if (self.inverted) { val = to.upperBound - val + to.lowerBound }
         return val
     }
 }

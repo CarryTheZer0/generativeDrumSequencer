@@ -25,7 +25,7 @@ class SamplePlayer
         let samplesJSON: SamplesJSON = try! JSONDecoder().decode(SamplesJSON.self, from: jsonData)
         
         for file in samplesJSON.samples {
-            addSample(filename: file)
+            self.addSample(filename: file)
         }
     }
     

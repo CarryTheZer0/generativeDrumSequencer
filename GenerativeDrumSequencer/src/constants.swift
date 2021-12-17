@@ -17,4 +17,6 @@ struct Constants {
     static let foreground3 = Color(red: 0.75, green: 0.75, blue: 0.75)
     static let highlight = Color(red: 0.2, green: 0.8, blue: 0.8)
     static let pad = Color(red: 0.1, green: 0.4, blue: 0.4)
+    static let defaultHitChance = 100
+    static let defaultVolume = 2.5
 }

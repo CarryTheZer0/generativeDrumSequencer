@@ -27,18 +27,23 @@ struct CanvasView : View {
         VStack {
             HStack {
                 let yLabel: String = self.canvas.getSelectedNode() != nil ? self.canvas.getSelectedNode()!.getYLabel() : "Y"
-                Text("\(yLabel) --->")
-                    .rotationEffect(Angle(degrees: 270.0))
-                    .frame(height: self.textMargin)
+                ZStack {
+                    Text("\(yLabel) --->")
+                        .frame(height: self.textMargin)
+                        .padding(4)
+                        .background(Constants.foreground3)
+                        .clipShape(Capsule()).rotationEffect(Angle(degrees: 270.0))
+                }
                 GeometryReader { geometry in
                     ZStack {
                         Rectangle()
                             .foregroundColor(Constants.pad)
-                            .padding()
                             .border(Constants.text)
                         ForEach(self.canvas.getNodes()) { node in
                             CanvasNodeView(node: node, canvas: self.canvas, maxBounds: CGPoint(x: geometry.size.height, y: geometry.size.height))
                         }
+                        InfoView(filename: "textTest", width: 300)
+                            .offset(x: geometry.size.width / 2, y: geometry.size.height / 2)
                     }
                     .frame(width: geometry.size.height, height: geometry.size.height)
                 }
@@ -47,8 +52,14 @@ struct CanvasView : View {
                 Spacer()
                     .frame(width: self.textMargin, height: self.textMargin)
                 let xLabel: String = self.canvas.getSelectedNode() != nil ? self.canvas.getSelectedNode()!.getXLabel() : "X"
-                Text("\(xLabel) --->")
-                    .frame(height: self.textMargin)
+                ZStack {
+                    Text("\(xLabel) --->")
+                        .frame(height: self.textMargin)
+                        .padding(4)
+                        .background(Constants.foreground3)
+                        .clipShape(Capsule())
+                }
+                .padding(10)
             }
         }
     }

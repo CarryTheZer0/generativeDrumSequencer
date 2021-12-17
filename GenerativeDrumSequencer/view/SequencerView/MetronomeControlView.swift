@@ -11,8 +11,8 @@ import SwiftUI
 struct MetronomeControlView : View {
     private var sequencer: DrumSequencer
     
-    init(sequencer: DrumSequencer) {
-        self.sequencer = sequencer
+    init() {
+        self.sequencer = DrumSequencer.shared
     }
     
     var body: some View {
@@ -26,11 +26,12 @@ struct MetronomeControlView : View {
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.black)
                         .frame(width: 20, height: 20)
-                        .padding()
+                        .padding(7)
                 }
             }
             .background(Color.green)
             .cornerRadius(5.0)
+            .padding(10)
             Button(action: {
                 self.sequencer.stop()
             }) {
@@ -40,11 +41,12 @@ struct MetronomeControlView : View {
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.black)
                         .frame(width: 20, height: 20)
-                        .padding()
+                        .padding(7)
                 }
             }
             .background(Color.red)
             .cornerRadius(5.0)
+            .padding(10)
             Button(action: {
                 self.sequencer.addTrack(filename: "Empty", measures: 8)
             }) {
@@ -61,7 +63,7 @@ struct MetronomeControlView : View {
                 self.sequencer.sync()
             }) {
                 ZStack {
-                    Image(systemName: "plus")
+                    Image(systemName: "arrow.counterclockwise")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(.black)

@@ -12,7 +12,7 @@ class SampleBank {
     private let maxSampleCount: Int
     private var sampleArray: [AKAudioPlayer]
     
-    init(maxSamples: Int = 6, filename: String, mixer: AKMixer) {
+    init(maxSamples: Int = 16, filename: String, mixer: AKMixer) {
         self.maxSampleCount = maxSamples
         self.sampleArray = []
         for _ in 0..<self.maxSampleCount {

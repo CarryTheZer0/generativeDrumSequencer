@@ -20,10 +20,7 @@ class CanvasNode : Identifiable {
         self.yLabel = "Y"
         
         let xRule = RuleVolMin(sequencer: sequencer, parent: self, isX: true)
-        xRule.addIndexPair()
-        
         let yRule = RuleHitChance(sequencer: sequencer, parent: self, isX: false)
-        yRule.addIndexPair()
 
         
         self.rules.append(xRule)

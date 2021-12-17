@@ -26,7 +26,7 @@ class Track : ObservableObject
         track = []
         
         for _ in 1...measures {
-            track.append(TrackUnit(enabled: false, hitChance: 100, volumeMin: 0.3, volumeMax: 1.0))
+            track.append(TrackUnit(enabled: false, hitChance: Constants.defaultHitChance, volumeMin: Constants.defaultVolume, volumeMax: Constants.defaultVolume))
         }
     }
     
@@ -53,7 +53,7 @@ class Track : ObservableObject
     }
     
     func increment() {
-        self.track.append(TrackUnit(enabled: true, hitChance: 100, volumeMin: 1.0, volumeMax: 1.0))
+        self.track.append(TrackUnit(enabled: false, hitChance: Constants.defaultHitChance, volumeMin: Constants.defaultVolume, volumeMax: Constants.defaultVolume))
     }
     
     func decrement() {
@@ -86,6 +86,10 @@ class Track : ObservableObject
     
     func delete() {
         self.parent.removeTrack(index: self.trackIndex)
+    }
+    
+    func getEnabled(index: Int) -> Bool {
+        return self.track[index].enabled
     }
     
     func getName() -> String {
